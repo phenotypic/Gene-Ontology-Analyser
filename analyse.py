@@ -27,7 +27,7 @@ if args.n or not pathlib.Path(symbolsFile).is_file():
         try:
             symbolSubject = symbolSubject + '&subject=' + data['response']['result']['doc']['str'][0]['#text'].replace(':', '%3A')
             print('Retrieved ID for', symbol)
-        except NameError:
+        except KeyError:
             print('Error: genenames.org failed to provide an ID for', symbol)
 
     with open(symbolsFile, 'w') as text_file:
