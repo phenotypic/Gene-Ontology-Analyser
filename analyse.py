@@ -6,9 +6,9 @@ import xmltodict
 import csv
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-r', help='retrieve new ontology data from API', action='store_true')
-parser.add_argument('-n', help='retrieve new HGNC ids for symbols.txt file', action='store_true')
 parser.add_argument('-s', help='define search subset', default='goslim_agr')
+parser.add_argument('-n', help='retrieve new HGNC ids for symbols.txt file', action='store_true')
+parser.add_argument('-r', help='retrieve new ontology data from API', action='store_true')
 args = parser.parse_args()
 
 annotations = {'function': {'index': 0, 'dictionary': {}}, 'process': {'index': 1, 'dictionary': {}}, 'location': {'index': 2, 'dictionary': {}}}
@@ -50,6 +50,9 @@ if args.r or not pathlib.Path(subsetDir).is_dir():
         json.dump(annotations[key]['dictionary'], open(subsetDir + key + '_' + args.s + '.txt', 'w'))
         print('Wrote', key, 'data to', subsetDir + key + '_' + args.s + '.txt')
 
+    if len(data['subjects']) != len(geneList):
+        print('\nError: Length of retrieved ontology data (' + str(len(data['subjects'])) + ') does not match the number of input genes (' + str(len(geneList)) + '). This means that geneontology.org did not return data for some of the genes.')
+        quit()
     geneAttributes = {}
     for index, gene in enumerate(geneList):
         geneAttributes[gene] = []
