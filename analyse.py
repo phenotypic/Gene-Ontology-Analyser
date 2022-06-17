@@ -32,7 +32,7 @@ if args.n or not pathlib.Path(symbolsFile).is_file():
 
     with open(symbolsFile, 'w') as text_file:
         text_file.write(symbolSubject)
-    print('Wrote symbol data to gene_symbols.txt')
+    print('Wrote ID data to', symbolsFile)
 
 else:
     f = open(symbolsFile, 'r')
@@ -54,7 +54,7 @@ if args.r or not pathlib.Path(subsetDir).is_dir():
         print('Wrote', key, 'data to', subsetDir + key + '_' + args.s + '.txt')
 
     if len(data['subjects']) != len(geneList):
-        print('\nError: Length of retrieved ontology data (' + str(len(data['subjects'])) + ') does not match the number of input genes (' + str(len(geneList)) + '). This means that geneontology.org did not return data for some of the genes.')
+        print('\nError: Length of retrieved ontology data (' + str(len(data['subjects'])) + ') does not match the number of input genes (' + str(len(geneList)) + '). This means that geneontology.org did not return data for some genes.')
         quit()
     geneAttributes = {}
     for index, gene in enumerate(geneList):
