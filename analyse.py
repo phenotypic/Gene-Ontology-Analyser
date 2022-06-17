@@ -74,12 +74,11 @@ else:
     for key, value in annotations.items():
         annotations[key]['dictionary'] = json.load(open(subsetDir + key + '_' + args.s + '.txt'))
 
-skippedTerms = ['other biological process', 'other cellular component']
-annotations['location']['dictionary'] = {key: val for key, val in annotations['location']['dictionary'].items() if val not in skippedTerms}
-
+skippedTerms = ['other biological process', 'other cellular component', 'other molecular function']
 for groupingType in annotations:
     print('\nOntology grouping type:', groupingType)
     writer = csv.writer(open(subsetDir + 'Cellular ' + groupingType + ' (' + args.s + ').csv', 'w'))
+    annotations[groupingType]['dictionary'] = {key: val for key, val in annotations[groupingType]['dictionary'].items() if val not in skippedTerms}
     for key, value in annotations[groupingType]['dictionary'].items():
         currentList = [value]
         for gene, array in geneAttributes.items():
