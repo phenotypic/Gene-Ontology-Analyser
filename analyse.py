@@ -7,13 +7,14 @@ import csv
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-s', help='define search subset', default='goslim_agr')
-parser.add_argument('-n', help='retrieve new HGNC ids for symbols.txt file', action='store_true')
+parser.add_argument('-i', help='define symbols input file', default='symbols.txt')
+parser.add_argument('-n', help='retrieve new HGNC ids for the symbols file', action='store_true')
 parser.add_argument('-r', help='retrieve new ontology data from API', action='store_true')
 args = parser.parse_args()
 
 annotations = {'function': {'index': 0, 'dictionary': {}}, 'process': {'index': 1, 'dictionary': {}}, 'location': {'index': 2, 'dictionary': {}}}
 
-my_file = open('symbols.txt', 'r')
+my_file = open(args.i, 'r')
 geneList = my_file.read().split('\n')
 my_file.close()
 
