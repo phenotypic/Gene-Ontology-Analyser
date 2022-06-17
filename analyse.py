@@ -24,8 +24,11 @@ if args.n or not pathlib.Path(symbolsFile).is_file():
         lookupURL = 'https://rest.genenames.org/fetch/symbol/' + symbol
         r = requests.get(lookupURL)
         data = xmltodict.parse(r.content)
-        symbolSubject = symbolSubject + '&subject=' + data['response']['result']['doc']['str'][0]['#text'].replace(':', '%3A')
-        print('Retrieved ID for', symbol)
+        try:
+            symbolSubject = symbolSubject + '&subject=' + data['response']['result']['doc']['str'][0]['#text'].replace(':', '%3A')
+            print('Retrieved ID for', symbol)
+        except NameError:
+            print('Error: genenames.org failed to provide an ID for', symbol)
 
     with open(symbolsFile, 'w') as text_file:
         text_file.write(symbolSubject)
