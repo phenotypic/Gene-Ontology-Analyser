@@ -26,7 +26,7 @@ Here are some flags you can add:
 | `-n` | Names: Retrieve new HGNC ids for symbols.txt file |
 | `-r` | Names: Retrieve new ontology data from API |
 
-After the script is run and the IDs are retrieved for the input gene symbols, the script will output the groupings into three `.csv` files: `Cellular function (subset).csv`, `Cellular process (subset).csv`, and `Cellular locaiton (subset).csv`.
+After the script is run and the IDs are retrieved, the script will process the data and output the groupings into three `.csv` files: `Cellular function (subset).csv`, `Cellular process (subset).csv`, and `Cellular locaiton (subset).csv`.
 
 The script will also output the groupings to the terminal. Here is an example for the `GO:0005576 (extracellular region)` group from the `location` ontology subcategory using the `goslim_agr` GO subset:
 
