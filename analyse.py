@@ -37,7 +37,7 @@ if args.n or not pathlib.Path(symbolsFile).is_file():
 
 else:
     f = open(symbolsFile, 'r')
-    symbolSubject = f.read()
+    symbolSubject = f.read().rstrip()
 
 subsetDir = args.s + '/'
 if args.r or not pathlib.Path(subsetDir).is_dir():
