@@ -15,7 +15,7 @@ args = parser.parse_args()
 annotations = {'function': {'index': 0, 'dictionary': {}}, 'process': {'index': 1, 'dictionary': {}}, 'location': {'index': 2, 'dictionary': {}}}
 
 my_file = open(args.i, 'r')
-geneList = my_file.read().split('\n')
+geneList = my_file.read().rstrip().split('\n')
 my_file.close()
 
 symbolsFile = 'HGNCids.txt'
